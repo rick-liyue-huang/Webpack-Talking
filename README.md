@@ -2,6 +2,8 @@
 
 npx webpack -v to check the version
 
+developers break programs up into discrete chunks of functionality called a module.
+
 webpack is a bundler for script.
 
 create 'webpack.config.js' to config the webpack tool process.
@@ -40,3 +42,14 @@ Entrypoint main = bundle.js
     | ./src/header.js 189 bytes [built]
     | ./src/content.js 195 bytes [built]
 ```
+'loader' tell webpack how to bundle different types of module.
+'file-loader' used to deal with .jpg picture files
+
+webpack needs loader to deal with other type files.
+
+只要看到需要处理的文件不是.js，就知道需要使用loader了。
+
+url-loader can deal with different size picture. we can set size limit to get seperated or integrated output file.
+
+style loaders and fonts refer to 'website/Documentation/guides/asset management' and to 'webisie/loaders/css-loader, style-loader, sass-loader, postcss-loader'
+
