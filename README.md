@@ -59,4 +59,11 @@ plugin: will do something when the webpack works on some process, some like life
 
 entry|output:  refer to website/configuration/output, entry
 refer to website/documentation/guides/output management important
-refer to website/documentation/plugins/htmlwebpackplugin
+refer to website/documentation/plugins/htmlwebpackplugin.
+
+sourceMap: show the bug in the source file in src directory. map the source 
+
+```
+  devtool: 'cheap-module-eval-source-map', // for 'development' mode 
+  // devtool: 'cheap-module-source-map', // for 'production' mode
+```

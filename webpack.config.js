@@ -6,14 +6,16 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: {
     main: './src/index.js',
-    sub: './src/index.js'
+    // sub: './src/index.js'
   },
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: 'http://cdn.com.cn' // static source put in some public place.
+    // publicPath: 'http://cdn.com.cn' // static source put in some public place.
   },
   mode: "development",
+  devtool: 'cheap-module-eval-source-map', // for 'development' mode 
+  // devtool: 'cheap-module-source-map', // for 'production' mode
   module: {
     rules: [
       {

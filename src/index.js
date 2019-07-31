@@ -25,6 +25,8 @@ import './index.scss';
 
 // -----------  font loader ----------
 
-var root = document.getElementById('root');
-root.innerHTML = '<div class="iconfont iconicon_add">abc</div>';
+// var root = document.getElementById('root');
+// root.innerHTML = '<div class="iconfont iconicon_add">abc</div>';
+
+consol.log('hello world');
 
