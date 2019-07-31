@@ -12,10 +12,24 @@ module.exports = {
     filename: '[name].js',
     path: path.resolve(__dirname, 'dist'),
     // publicPath: 'http://cdn.com.cn' // static source put in some public place.
+    publicPath: '/'
   },
   mode: "development",
   devtool: 'cheap-module-eval-source-map', // for 'development' mode 
   // devtool: 'cheap-module-source-map', // for 'production' mode
+
+  // using webpack dev server
+  devServer: {
+    // watch the dist directory
+    contentBase: './dist',
+    // start webpack server, and open the browsers automatically.
+    open: true,
+    port: 8080,
+    // cross-domain port, used in React.js
+    proxy: {
+      '/api': 'http://localhost:3000'
+    }
+  },
   module: {
     rules: [
       {

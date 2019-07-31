@@ -67,3 +67,15 @@ sourceMap: show the bug in the source file in src directory. map the source
   devtool: 'cheap-module-eval-source-map', // for 'development' mode 
   // devtool: 'cheap-module-source-map', // for 'production' mode
 ```
+
+use three methods to get server:
+
+1. auto refresh page by modify source code
+`"watch": "webpack --watch"`
+
+2. use webpack-dev-server
+
+3. self server: `"middleware": "node server.js",` in 'package.json'
+
+
+refer to website/documentation/guides/development and /configuration/devtool devserver
