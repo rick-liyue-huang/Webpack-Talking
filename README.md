@@ -53,3 +53,10 @@ url-loader can deal with different size picture. we can set size limit to get se
 
 style loaders and fonts refer to 'website/Documentation/guides/asset management' and to 'webisie/loaders/css-loader, style-loader, sass-loader, postcss-loader'
 
+plugins: some convenient tools
+
+plugin: will do something when the webpack works on some process, some like lifecycle functions. and they provide some convenient ways.
+
+entry|output:  refer to website/configuration/output, entry
+refer to website/documentation/guides/output management important
+refer to website/documentation/plugins/htmlwebpackplugin

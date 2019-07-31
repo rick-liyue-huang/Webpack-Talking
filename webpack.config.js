@@ -1,13 +1,17 @@
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: './src/index.js'
+    main: './src/index.js',
+    sub: './src/index.js'
   },
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: 'http://cdn.com.cn' // static source put in some public place.
   },
   mode: "development",
   module: {
@@ -64,6 +68,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+// HtmlWebpackPlugin will produce automatically one html file, and also plugin the bundled js file.
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html'
+    }),
+    new CleanWebpackPlugin() // clean the previous dist directory.
+  ]
 
 }
