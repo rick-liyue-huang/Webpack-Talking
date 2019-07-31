@@ -30,6 +30,8 @@ import './index.scss';
 
 // console.log('hello world -- Rick!!!!');
 
+// ---- hot module replacement -----
+
 // import './style.css';
 
 // var btn = document.createElement('button');
@@ -42,19 +44,46 @@ import './index.scss';
 //   document.body.appendChild(div);
 // }
 
-import counter from './counter';
-import number from './number';
-
-counter();
-number();
 
 
-// only hope the module no change by the other module change.
-if(module.hot) {
-  module.hot.accept('./number', () => {
+// import counter from './counter';
+// import number from './number';
+
+// counter();
+// number();
+
+
+// // only hope the module no change by the other module change.
+// if(module.hot) {
+//   module.hot.accept('./number', () => {
     
-    document.body.removeChild(document.getElementById('number'));
-    number();
-  })
+//     document.body.removeChild(document.getElementById('number'));
+//     number();
+//   })
+// }
+
+// ----- es6 ------
+// for some common code use...
+// import "@babel/polyfill";
+
+// const arr = [
+//   new Promise(() => {}),
+//   new Promise(() => {})
+// ];
+
+// arr.map((item) => {
+//   console.log(item);
+// });
+
+import "@babel/polyfill";
+
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+
+class App extends Component {
+  render() {
+    return (<div>Hello world</div>)
+  }
 }
 
+ReactDOM.render(<App />, document.getElementById('root'));

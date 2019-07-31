@@ -96,3 +96,44 @@ if(module.hot) {
 refer to website/document/guides/hot module replacement
 website/docuemnt/api/hot module replacement
 website/documents/concept/hot module replacement
+
+
+babel for es6
+
+// for some common code use...
+import "@babel/polyfill";
+and 
+`npm install --save @babel/polyfill`
+`npm install @babel/preset-env --save-dev`
+```
+options: {
+  presets: [['@babel/preset-env', {
+    useBuiltIns: 'usage',
+    targets: {
+      chrome: '67'
+    }
+  }]]
+}
+```
+
+for some library code use runtime
+`npm install --save-dev @babel/plugin-transform-runtime`
+`npm install --save @babel/runtime`
+`npm install --save @babel/runtime-rejs2`
+
+```
+plugins: [['@babel/plugin-transform-runtime', {
+    "absoluteRuntime": false,
+    "corejs": 2,
+    "helpers": true,
+    "regenerator": true,
+    "useESModules": false
+  }]]
+```
+
+for react code
+`npm install --save-dev @babel/pres-react`
+and then add code
+`["@babel/preset-react"]` in .babelrc file
+
+

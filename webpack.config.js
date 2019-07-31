@@ -95,6 +95,28 @@ module.exports = {
         use: {
           loader: 'file-loader'
         }
+      },
+      // deal with es6 syntax, its a bridge
+      { 
+        test: /\.js$/, 
+        exclude: /node_modules/, 
+        loader: 'babel-loader',
+        options: {
+          // presets: [['@babel/preset-env', {
+          //   useBuiltIns: 'usage', // use it when meet with es6
+          //   targets: {
+          //     chrome: '67'
+          //   }
+          // }]]
+
+          // plugins: [['@babel/plugin-transform-runtime', {
+          //   "absoluteRuntime": false,
+          //   "corejs": 2,
+          //   "helpers": true,
+          //   "regenerator": true,
+          //   "useESModules": false
+          // }]]
+        }
       }
     ]
   },
@@ -109,3 +131,23 @@ module.exports = {
   ]
 
 }
+
+/**
+ * .babelrc file
+ * { for common code
+  "presets": [["@babel/preset-env", {
+    "useBuiltIns": "usage",
+    "targets": {
+      "chrome": "67"
+    }
+  }]],
+  for library code.
+  "plugins": [["@babel/plugin-transform-runtime", {
+    "absoluteRuntime": false,
+    "corejs": 2,
+    "helpers": true,
+    "regenerator": true,
+    "useESModules": false
+  }]]
+}
+ */
