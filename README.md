@@ -79,3 +79,20 @@ use three methods to get server:
 
 
 refer to website/documentation/guides/development and /configuration/devtool devserver
+
+talk about hot module replacement
+
+```
+// only hope the module no change by the other module change.
+if(module.hot) {
+  module.hot.accept('./number', () => {
+    document.body.removeChild(document.getElementById('number'));
+    number();
+  })
+}
+```
+'css-loader' includes 'module.hot.accept..' code
+
+refer to website/document/guides/hot module replacement
+website/docuemnt/api/hot module replacement
+website/documents/concept/hot module replacement

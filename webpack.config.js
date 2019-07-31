@@ -2,6 +2,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const webpack = require('webpack');
+
 
 module.exports = {
   entry: {
@@ -28,7 +30,9 @@ module.exports = {
     // cross-domain port, used in React.js
     proxy: {
       '/api': 'http://localhost:3000'
-    }
+    },
+    hot: true, // open Hot Module Replacement
+    hotOnly: true 
   },
   module: {
     rules: [
@@ -60,7 +64,16 @@ module.exports = {
       {
         // deal with .css file with two loader, css-loader -> style-loader, css-loader: analyze the multiple .css files, and get one .css file; style-loader deal with style files(the last .css file).
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          'style-loader', 
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 2
+            }
+          },
+          'postcss-loader'
+        ]
       },
       {
         // sass-loader -> css-loader -> style-loader
@@ -90,7 +103,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new CleanWebpackPlugin() // clean the previous dist directory.
+    new CleanWebpackPlugin(), // clean the previous dist directory.
+    // if the style changes, the page keep static and no refresh
+    new webpack.HotModuleReplacementPlugin() // match with hot: true
   ]
 
 }
