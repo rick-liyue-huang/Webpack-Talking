@@ -128,7 +128,13 @@ module.exports = {
     new CleanWebpackPlugin(), // clean the previous dist directory.
     // if the style changes, the page keep static and no refresh
     new webpack.HotModuleReplacementPlugin() // match with hot: true
-  ]
+  ],
+
+  // config tree shaking for 'development mode'
+  // `"sideEffects": ["third part official moduels", "*.css"],` in package.json to avoid tree-shaking with third part offical modules and some style files.
+  optimization: { // only for 'development' mode
+    usedExports: true
+  }
 
 }
 

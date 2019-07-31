@@ -1,5 +1,6 @@
 {
   "name": "webpack-talking",
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "Talk about Webpack",
   "main": "index.js",

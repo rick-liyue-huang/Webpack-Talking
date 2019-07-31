@@ -136,4 +136,6 @@ for react code
 and then add code
 `["@babel/preset-react"]` in .babelrc file
 
+Tree shaking: only bundle the used function. only support ES module. (import methods) static import mehtod.
+
 
