@@ -138,4 +138,5 @@ and then add code
 
 Tree shaking: only bundle the used function. only support ES module. (import methods) static import mehtod.
 
+seperate webpack.config to base/dev/prod config files by 'webpack-merge'
 
