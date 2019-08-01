@@ -7,15 +7,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = {
+
   entry: {
     // lodash: './src/lodash.js', // for munual split
     main: './src/index.js'
   },
   output: {
     filename: '[name].js',
+    chunkFilename: '[name].chunk.js', // for some module files
     path: path.resolve(__dirname, '../dist'),
     // publicPath: '/'
   },
@@ -37,7 +40,8 @@ module.exports = {
         // deal with .css file with two loader, css-loader -> style-loader, css-loader: analyze the multiple .css files, and get one .css file; style-loader deal with style files(the last .css file).
         test: /\.css$/,
         use: [
-          'style-loader', 
+          // 'style-loader', 
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -51,7 +55,8 @@ module.exports = {
         // sass-loader -> css-loader -> style-loader
         test: /\.scss$/,
         use: [
-          'style-loader', 
+          // 'style-loader', 
+          MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
@@ -83,11 +88,23 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new CleanWebpackPlugin() // clean the previous dist directory.
+    new CleanWebpackPlugin(), // clean the previous dist directory.
     // if the style changes, the page keep static and no refresh
+
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[name].chunk.css'
+    }) // for css chunks
   ],
 
   optimization: {
+    usedExports: true, // config tree shaking for 'development mode'
+    // `"sideEffects": ["third part official moduels", "*.css"],` in package.json to avoid tree-shaking with third part offical modules and some style files.
+
+    // compress css code
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
+
+
     // code splitting tools for webpack
     splitChunks: {
       chunks: 'all',
@@ -109,7 +126,13 @@ module.exports = {
             return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
           },
           // chunks: 'all'
-        }
+        },
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.css$/,
+        //   chunks: 'all',
+        //   enforce: true,
+        // },
       }
     }
   }

@@ -31,14 +31,14 @@ const devConfig = {
   
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // match with hot: true
-    new BundleAnalyzerPlugin() // Webpack Bundle Analyzer - open one analyze page
+    // new BundleAnalyzerPlugin() // Webpack Bundle Analyzer - open one analyze page
   ],
 
-  // config tree shaking for 'development mode'
-  // `"sideEffects": ["third part official moduels", "*.css"],` in package.json to avoid tree-shaking with third part offical modules and some style files.
-  optimization: { // only for 'development' mode
-    usedExports: true
-  }
+  // // config tree shaking for 'development mode'
+  // // `"sideEffects": ["third part official moduels", "*.css"],` in package.json to avoid tree-shaking with third part offical modules and some style files.
+  // optimization: { // only for 'development' mode
+  //   usedExports: true
+  // }
 
 }
 

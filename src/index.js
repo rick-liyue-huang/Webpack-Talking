@@ -108,27 +108,37 @@ import './index.scss';
 //   })
 // }
 
-/*
-async function getComponent() { // lazy loading
-  const { default: _ } = await import('lodash');
-  const element = document.createElement('div');
-  element.innerHTML = _.join(['a', 'b'], '---');
-  return element;
-}
 
-document.addEventListener('click', () => {
-  getComponent().then(ele => {
-    document.body.appendChild(ele);
-  });
-});
-*/
+// async function getComponent() { // lazy loading
+//   const { default: _ } = await import(/* webpackPrefetch: true */ 'lodash');
+//   const element = document.createElement('div');
+//   element.innerHTML = _.join(['a', 'b'], '---');
+//   return element;
+// }
 
-document.addEventListener('click', () => {
-  // const element = document.createElement('div');
-  // // element.innerHTML = _.join(['a', 'b'], '---');
-  // element.innerHTML = 'ok';
-  // document.body.appendChild(element);
-  import (/* webpackPrefetch: true */ './click.js').then(({default: func}) => {
-    func();
-  })
-})
+// document.addEventListener('click', () => {
+//   getComponent().then(ele => {
+//     document.body.appendChild(ele);
+//   });
+// });
+
+
+
+// ------- lazy load ----
+// document.addEventListener('click', () => {
+//   // const element = document.createElement('div');
+//   // // element.innerHTML = _.join(['a', 'b'], '---');
+//   // element.innerHTML = 'ok';
+//   // document.body.appendChild(element);
+//   import (/* webpackPrefetch: true */ './click.js').then(({default: func}) => {
+//     func();
+//   })
+// })
+
+
+// -------- css chunks -------------
+
+import './style.css';
+import './style1.css';
+
+console.log('hello world');

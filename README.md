@@ -216,3 +216,11 @@ also available in
 webpack 鼓励 异步代码，这样可以增加代码的使用率，但是这样容易引起页面因为代码加载二产生的加载变慢，这时候我们就需要用到 webpack 提供的preload prefetch 功能。在网络空闲的时候可以加载其他的代码
 
 `/* webpackPrefetch: true */` in the imported code to let code prefetchs when the network is available.
+
+CSS chunks: 
+
+`npm install --save-dev mini-css-extract-plugin`
+`npm i --save-dev optimize-css-assets-webpack-plugin`
+
+
+注意 tree shaking 的兼容问题，tree shaking 需要加载一些style 文件，但是可以通过在package.json里面设置。 also 支持热更新
