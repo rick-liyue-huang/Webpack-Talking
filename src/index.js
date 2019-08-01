@@ -89,6 +89,25 @@ import './index.scss';
 
 // ReactDOM.render(<App />, document.getElementById('root'));
 
-import { add } from './math';
+// import { add } from './math';
 
-add(1, 8);
+// add(1, 8);
+
+import _ from 'lodash';
+import $ from 'jquery';
+
+console.log(_.join(['a', 'b', 'c'], '*'));
+
+// main.js get lodash.js and main.js, when working file changes, only load main.js
+
+function getComponent() {
+  return import('lodash').then(({default: _}) => {
+    var element = document.createElement('div');
+    element.innerHTML = _.join(['a', 'b'], '---');
+    return element;
+  })
+}
+
+getComponent().then(ele => {
+  document.body.appendChild(ele);
+})

@@ -140,3 +140,43 @@ Tree shaking: only bundle the used function. only support ES module. (import met
 
 seperate webpack.config to base/dev/prod config files by 'webpack-merge'
 
+code splitting:
+
+split one file to different files, the main file and some modules files,
+
+```
+optimization: {
+  // code splitting tools for webpack
+  splitChunks: {
+    chunks: 'all'
+  }
+}
+```
+will support syn and asyn code splitting
+
+```
+splitChunks: {
+  chunks: 'all',
+  minSize: 30000,
+  maxSize: 0,
+  minChunks: 1,
+  maxAsyncRequests: 5,
+  maxInitialRequests: 3,
+  automaticNameDelimiter: '~',
+  automaticNameMaxLength: 30,
+  name: false,
+  cacheGroups: {
+    vendors: {
+      test: /[\\/]node_modules[\\/]/,
+      // cacheGroupKey here is `vendors` as the key of the cacheGroup
+      name(module, chunks, cacheGroupKey) {
+        const moduleFileName = module.identifier().split('/').reduceRight(item => item);
+        const allChunksNames = chunks.map((item) => item.name).join('~');
+        return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
+      },
+      chunks: 'all'
+    }
+  }
+}
+
+```
