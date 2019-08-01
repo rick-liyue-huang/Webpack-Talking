@@ -7,6 +7,7 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const devConfig = {
   
@@ -29,7 +30,8 @@ const devConfig = {
   },
   
   plugins: [
-    new webpack.HotModuleReplacementPlugin() // match with hot: true
+    new webpack.HotModuleReplacementPlugin(), // match with hot: true
+    new BundleAnalyzerPlugin() // Webpack Bundle Analyzer - open one analyze page
   ],
 
   // config tree shaking for 'development mode'

@@ -198,3 +198,21 @@ document.addEventListener('click', () => {
   });
 });
 ```
+
+
+webpack bundle analyze and preload
+
+'https://github.com/webpack/analyse' 
+add `webpack --profile --json > stats.json` in package.json "dev-build",
+and run `npm run dev-build` to create 'stats.json', and pull this file to 'https://github.com/webpack/analyse'.
+
+also available in 
+'https://alexkuz.github.io/webpack-chart/'
+'https://github.com/webpack-contrib/webpack-bundle-analyzer'
+
+
+`cmd - shift - p` to open code and then input 'coverage', click show coverage, and then we can look code usage, the more the better. and async code has better code usage, so webpack encourage chunk:'async' in 'webpack.base.config.js'
+
+webpack 鼓励 异步代码，这样可以增加代码的使用率，但是这样容易引起页面因为代码加载二产生的加载变慢，这时候我们就需要用到 webpack 提供的preload prefetch 功能。在网络空闲的时候可以加载其他的代码
+
+`/* webpackPrefetch: true */` in the imported code to let code prefetchs when the network is available.

@@ -94,7 +94,7 @@ import './index.scss';
 // add(1, 8);
 
 // import _ from 'lodash';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 // console.log(_.join(['a', 'b', 'c'], '*'));
 
@@ -108,6 +108,7 @@ import $ from 'jquery';
 //   })
 // }
 
+/*
 async function getComponent() { // lazy loading
   const { default: _ } = await import('lodash');
   const element = document.createElement('div');
@@ -120,4 +121,14 @@ document.addEventListener('click', () => {
     document.body.appendChild(ele);
   });
 });
+*/
 
+document.addEventListener('click', () => {
+  // const element = document.createElement('div');
+  // // element.innerHTML = _.join(['a', 'b'], '---');
+  // element.innerHTML = 'ok';
+  // document.body.appendChild(element);
+  import (/* webpackPrefetch: true */ './click.js').then(({default: func}) => {
+    func();
+  })
+})

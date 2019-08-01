@@ -108,7 +108,7 @@ module.exports = {
             const allChunksNames = chunks.map((item) => item.name).join('~');
             return `${cacheGroupKey}-${allChunksNames}-${moduleFileName}`;
           },
-          chunks: 'all'
+          // chunks: 'all'
         }
       }
     }
