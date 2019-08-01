@@ -224,3 +224,12 @@ CSS chunks:
 
 
 注意 tree shaking 的兼容问题，tree shaking 需要加载一些style 文件，但是可以通过在package.json里面设置。 also 支持热更新
+
+```
+output: {
+  filename: '[name].[contenthash]js',
+  chunkFilename: '[name].[contenthash].chunk.js', // for some module files
+},
+```
+
+将output文件分别放到dev and prod, 在 prod mode, we add [contenthash] on the output file. 如果编译内容发生变化，在上线后，如果内容不变用户还是用原来的文件。

@@ -17,8 +17,9 @@ module.exports = {
     main: './src/index.js'
   },
   output: {
-    filename: '[name].js',
-    chunkFilename: '[name].chunk.js', // for some module files
+    // filename: '[name].js',
+    // chunkFilename: '[name].chunk.js', // for some module files
+    // transfer to dev for cache
     path: path.resolve(__dirname, '../dist'),
     // publicPath: '/'
   },
@@ -134,8 +135,14 @@ module.exports = {
         //   enforce: true,
         // },
       }
+    },
+    // for older edition on cache problem in prod mode.
+    runtimeChunk: {
+      name: 'runtime'
     }
-  }
+  },
+
+  performance: false // no performance warnning
 
 }
 

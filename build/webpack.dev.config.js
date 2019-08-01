@@ -10,6 +10,12 @@ const baseConfig = require('./webpack.base.config');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const devConfig = {
+
+  output: {
+    // for development mode, donot worry cache.
+    filename: '[name].js',
+    chunkFilename: '[name].chunk.js', // for some module files
+  },
   
   mode: "development",
   devtool: 'cheap-module-eval-source-map', // for 'development' mode 

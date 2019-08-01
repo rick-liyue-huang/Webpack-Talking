@@ -16,6 +16,12 @@ const prodConfig = {
   //   // publicPath: 'http://cdn.com.cn' // static source put in some public place.
   //   // publicPath: '/'
   // },
+
+  output: {
+    filename: '[name].[contenthash]js',
+    chunkFilename: '[name].[contenthash].chunk.js', // for some module files
+  },
+
   mode: "production",
   devtool: 'cheap-module-source-map', // for 'production' mode
 
