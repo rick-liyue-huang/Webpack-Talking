@@ -10,7 +10,13 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports = {
+const merge = require('webpack-merge');
+const devConfig = require('./webpack.dev.config');
+const prodConfig = require('./webpack.prod.config');
+
+const webpack = require('webpack'); // shimming
+
+/* module.exports */ const baseConfig = {
 
   entry: {
     // lodash: './src/lodash.js', // for munual split
@@ -79,9 +85,16 @@ module.exports = {
         test: /\.js$/, 
         exclude: /node_modules/, 
         loader: 'babel-loader',
-        options: {
-        }
-      }
+        // use: [{
+        //     loader: 'babel-loader'
+        //   },{
+        //     loader: 'imports-loader?this=>window' 
+        //   }]
+      },
+      // {
+      //   test: require.resolve('./src/index.js'),
+      //   use: 'imports-loader?this=>window'
+      // } // ?
     ]
   },
 // HtmlWebpackPlugin will produce automatically one html file, and also plugin the bundled js file.
@@ -95,7 +108,12 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: '[name].css',
       chunkFilename: '[name].chunk.css'
-    }) // for css chunks
+    }), // for css chunks
+
+    new webpack.ProvidePlugin({ // for shimming in different module
+      $: 'jquery',
+      _: 'lodash'
+    })
   ],
 
   optimization: {
@@ -144,5 +162,15 @@ module.exports = {
 
   performance: false // no performance warnning
 
+}
+
+module.exports = (env) => {
+  if( env && env.production ) {
+    // production environment
+    return merge(baseConfig, prodConfig);
+  } else {
+    // development environment
+    return merge(baseConfig, devConfig);
+  }
 }
 

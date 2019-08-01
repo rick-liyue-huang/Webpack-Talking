@@ -27,4 +27,7 @@ const prodConfig = {
 
 }
 
-module.exports = merge(baseConfig, prodConfig);
+// module.exports = merge(baseConfig, prodConfig);
+
+// the second method by environment varaible
+module.exports = prodConfig;

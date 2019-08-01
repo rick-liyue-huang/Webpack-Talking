@@ -233,3 +233,26 @@ output: {
 ```
 
 将output文件分别放到dev and prod, 在 prod mode, we add [contenthash] on the output file. 如果编译内容发生变化，在上线后，如果内容不变用户还是用原来的文件。
+
+
+shimming:
+
+```
+new webpack.ProvidePlugin({ // for shimming in different module
+  $: 'jquery' 
+})
+```
+
+加入 shimming: 将搜寻整个项目代码，如果发现里面有$ 就会自动加载jquery
+
+`npm i --save-dev imports-loader`
+
+```
+use: [{
+  loader: 'babel-loader'
+},{
+  loader: 'imports-loader?this=>window' 
+}]
+```
+
+set this ==== window

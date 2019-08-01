@@ -1,11 +1,11 @@
 
-import Header from './header';
-import Content from './content';
-import avatar from './avatar.jpg';
-import createAvatar from './createAvatar';
+// import Header from './header';
+// import Content from './content';
+// import avatar from './avatar.jpg';
+// import createAvatar from './createAvatar';
 // import style from './index.scss'; // css modulation
 
-import './index.scss';
+// import './index.scss';
 
 // ---------  css modulation in style loader ---------
 // createAvatar();
@@ -149,6 +149,12 @@ import './index.scss';
 import _ from 'lodash';
 import $ from 'jquery';
 
+import { ui } from './ui';
+
+ui();
+
 const dom = $('<div>');
 dom.html(_.join(['rick', 'huang'], '---'));
 $('body').append(dom);
+
+console.log(this === window);

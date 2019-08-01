@@ -48,5 +48,8 @@ const devConfig = {
 
 }
 
-module.exports = merge(baseConfig, devConfig);
+// module.exports = merge(baseConfig, devConfig);
+
+// the second methods by environment variable
+module.exports = devConfig;
 
