@@ -256,3 +256,11 @@ use: [{
 ```
 
 set this ==== window
+
+Environment variable
+
+```
+"dev-build-second": "webpack --config ./build/webpack.base.config.js",
+"dev-second": "webpack-dev-server --config ./build/webpack.base.config.js",
+"build-second": "webpack --env.production --config ./build/webpack.base.config.js",
+```
