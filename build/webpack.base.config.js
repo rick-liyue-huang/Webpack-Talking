@@ -93,7 +93,7 @@ module.exports = {
       chunks: 'all',
       minSize: 30000,
       maxSize: 0,
-      minChunks: 1,
+      minChunks: 1, // how many main code files use this vendor file
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
       automaticNameDelimiter: '~',

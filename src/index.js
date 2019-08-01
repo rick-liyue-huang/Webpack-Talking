@@ -93,21 +93,31 @@ import './index.scss';
 
 // add(1, 8);
 
-import _ from 'lodash';
+// import _ from 'lodash';
 import $ from 'jquery';
 
-console.log(_.join(['a', 'b', 'c'], '*'));
+// console.log(_.join(['a', 'b', 'c'], '*'));
 
 // main.js get lodash.js and main.js, when working file changes, only load main.js
 
-function getComponent() {
-  return import('lodash').then(({default: _}) => {
-    var element = document.createElement('div');
-    element.innerHTML = _.join(['a', 'b'], '---');
-    return element;
-  })
+// function getComponent() {
+//   return import('lodash').then(({default: _}) => {
+//     var element = document.createElement('div');
+//     element.innerHTML = _.join(['a', 'b'], '---');
+//     return element;
+//   })
+// }
+
+async function getComponent() { // lazy loading
+  const { default: _ } = await import('lodash');
+  const element = document.createElement('div');
+  element.innerHTML = _.join(['a', 'b'], '---');
+  return element;
 }
 
-getComponent().then(ele => {
-  document.body.appendChild(ele);
-})
+document.addEventListener('click', () => {
+  getComponent().then(ele => {
+    document.body.appendChild(ele);
+  });
+});
+

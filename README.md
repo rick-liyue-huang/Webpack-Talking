@@ -180,3 +180,21 @@ splitChunks: {
 }
 
 ```
+
+lazy load: for async code
+
+```
+
+async function getComponent() {
+  const { default: _ } = await import('lodash');
+  const element = document.createElement('div');
+  element.innerHTML = _.join(['a', 'b'], '---');
+  return element;
+}
+
+document.addEventListener('click', () => {
+  getComponent().then(ele => {
+    document.body.appendChild(ele);
+  });
+});
+```
