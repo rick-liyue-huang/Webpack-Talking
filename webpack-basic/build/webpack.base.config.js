@@ -20,6 +20,18 @@ const prodConfig = require('./webpack.prod.config');
 
 
 const plugins = [
+  /* for Multiple page application
+  new HtmlWebpackPlugin({
+    template: './src/index.html',
+    filename: 'index.html', // for MPA
+    chunks: ['runtime', 'vendors', 'main'],
+  }),
+  new HtmlWebpackPlugin({
+    template: './src/index.html',
+    filename: 'test.html', // for MPA
+    chunks: ['runtime', 'vendors', 'sub'],
+  }),
+  */
   new HtmlWebpackPlugin({
     template: './src/index.html',
   }),
@@ -40,24 +52,25 @@ const plugins = [
 // one method for pushing dll and manifest plugins
 const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
 console.log(files); 
-files.forEach(file => {
-  if(/.*\.dll.js/.test(file)) {
+files.forEach((file) => {
+  if (/.*\.dll.js/.test(file)) {
     plugins.push(new AddAssetHtmlWebpackPlugin({
-      filepath: path.resolve(__dirname, '../dll', file)
-    }))
+      filepath: path.resolve(__dirname, '../dll', file),
+    }));
   }
-  if(/.*\.manifest.json/.test(file)) {
+  if (/.*\.manifest.json/.test(file)) {
     plugins.push(new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, '../dll', file)
-    }))
+      manifest: path.resolve(__dirname, '../dll', file),
+    }));
   }
-})
+});
 
 /* module.exports */ const baseConfig = {
 
   entry: {
     // lodash: './src/lodash.js', // for munual split
     main: './src/index.js',
+    // sub: './src/test.js', // for MPA
   },
   output: {
     // filename: '[name].js',
@@ -180,7 +193,7 @@ files.forEach(file => {
     // minimizer: [new OptimizeCSSAssetsPlugin({})],
 
 
-    // code splitting tools for webpack
+    // code splitting tools for webpack, not compatible with dll
     // splitChunks: {
     //   chunks: 'all',
     //   minSize: 30000,
@@ -212,21 +225,19 @@ files.forEach(file => {
     // },
     // for older edition on cache problem in prod mode.
     runtimeChunk: {
-      name: 'runtime'
-    }
+      name: 'runtime',
+    },
   },
 
-  performance: false // no performance warnning
+  performance: false, // no performance warnning
 
-}
+};
 
 module.exports = (env) => {
-  if( env && env.production ) {
+  if (env && env.production) {
     // production environment
     return merge(baseConfig, prodConfig);
-  } else {
-    // development environment
-    return merge(baseConfig, devConfig);
   }
-}
-
+  // development environment
+  return merge(baseConfig, devConfig);
+};

@@ -468,8 +468,20 @@ also can list all the plugins in one method and set the plugins by dll.js and ma
 10. cache/memory of computer,
 11. production mode should delete some tools/plugin/loader/ used in development mode.
 
+MPA multiple page application
 
-
+```
+new HtmlWebpackPlugin({
+  template: './src/index.html',
+  filename: 'index.html', // for MPA
+  chunks: ['runtime', 'vendors', 'main'],
+}),
+new HtmlWebpackPlugin({
+  template: './src/index.html',
+  filename: 'test.html', // for MPA
+  chunks: ['runtime', 'vendors', 'sub'],
+}),
+```
 
 
 
