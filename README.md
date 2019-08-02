@@ -312,3 +312,21 @@ if('serviceWorker' in navigator) {
 
 refer to 'https://github.com/GoogleChrome/workbox'
 
+
+TYPESCRIPT 
+
+1. add file 'tsconfig.json'
+
+2. add 
+```
+{
+  test: /\.ts$/,
+  use: 'ts-loader', // to deal with .ts
+  exclude: /node_modules/
+}
+```
+
+3. install '@types/lodash' or '@types/jquery' to let some module know types
+
+can search 'http://microsoft.github.io/TypeSearch/' website to search whether it is suppported ts.
+
