@@ -54,7 +54,7 @@ const devConfig = {
     hot: true, // open Hot Module Replacement
     // hotOnly: true, // auto refresh page
 
-    overlay: true, // match with eslint-loader, to show one layer on browers
+    // overlay: true, // match with eslint-loader, to show one layer on browers
   },
   
   plugins: [

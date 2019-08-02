@@ -8,7 +8,7 @@ const compiler = webpack(config); // compile the code
 const app = express();
 
 app.use(webpackDevMiddleware(compiler, {
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
 }));
 
 app.listen(3000, () => {

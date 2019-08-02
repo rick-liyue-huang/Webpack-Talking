@@ -5,6 +5,7 @@
  */
 
 const merge = require('webpack-merge');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const baseConfig = require('./webpack.base.config');
 
 const workboxPlugin = require('workbox-webpack-plugin'); // for PWA
@@ -29,10 +30,15 @@ const prodConfig = {
     new workboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true
-    }) // servicework
-  ]
+    }), // servicework
+  ],
 
-}
+  optimization: {
+    // compress css code
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
+  },
+
+};
 
 // module.exports = merge(baseConfig, prodConfig);
 

@@ -403,3 +403,73 @@ notice: eslint-loader first, and then babel-loader
 
 也可以不将eslint-loader 写入 webpack.config, 而是通过 git 'hook' eslint src 来检测是否需要将代码提交，前提是必须代码符合 eslint standard.
 
+
+boost webpack boost speed
+
+1. update the newest node npm yarn;
+2. let loader work on less scope, such as 'exclude: /node_modules/';
+3. Plugin try to be exact and correct such as 'minimizer: [new OptimizeCSSAssetsPlugin({})],' only use in prod mode;
+4. resolve parameters config, such as
+```
+resolve: {
+    extensions: ['.js', '.jsx'], // import .js firstly then .jsx if no file extension
+    // mainFiles: ['index', 'child'], // when import directory defaultly, will import index then child
+    alias: {
+      rickhuang: path.resolve(__dirname, '../src/child'), // import Child from 'rickhuang';
+    },
+  },
+```
+but not too much resolve extension, so we order its only for code file, but not static files.
+5. use DllPlugin:
+
+add 'webpack.dll.js'
+add `"build:dll": "webpack --config ./build/webpack.dll.js"`
+to run `npm run build:dll` to produce the bundled module files.
+
+run  `npm i --save-dev add-asset-html-webpack-plugin`
+and code 
+```
+new AddAssetHtmlWebpackPlugin({
+  filepath: path.resolve(__dirname, '../dll/vendors.dll.js'),
+}), // add 'vendors.dll.js' on 'index.html' file.
+```
+
+目标： 第三方模块只打包一次，
+只是在第一次引用，而在后面就不会引用了，这样可以增加打包的速度。
+use 
+
+```
+new webpack.DllReferencePlugin({
+  manifest: path.resolve(__dirname, '../dll/vendors.manifest.json'),
+}),
+```
+and 
+```
+plugins: [
+  new webpack.DllPlugin({
+    name: '[name]', // dll analyse
+    path: path.resolve(__dirname, '../dll/[name].manifest.json'),
+    //analyze the map relation of third module files, and put the relationship in manifest.json file.
+  }),
+],
+```
+
+to boost the bundle speed.
+
+在开始的时候，如果不使用dll， 则每次遇到import module， 将会直接从 node_modules里面拿到，这个过程会消耗一些时间，因为这些官方模块不会使用，因此可以将这些模块打包在一起，然后在以后的使用过程中不用再打包了。
+这里我们使用 webpack.dll.js首先处理第三方模块，首先生成vendors.dll.js, 然后生成一个映射文件，然后使用 AddAssetHtmlWebpackPlugin 将这个打包后的文件加载到html。这样下一次就不用再加载了。
+
+also can list all the plugins in one method and set the plugins by dll.js and manifest.json number.
+
+6. control bundle size by tree shaking and splitting splitChunks;
+7. use thread-loader, parallel-webpack, happypack;
+8. notice source-map;
+9. use stats.json to analyze bundle size;
+10. cache/memory of computer,
+11. production mode should delete some tools/plugin/loader/ used in development mode.
+
+
+
+
+
+

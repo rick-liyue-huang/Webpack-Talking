@@ -18,6 +18,7 @@
     "dev-build-second": "webpack --config ./build/webpack.base.config.js",
     "dev-second": "webpack-dev-server --config ./build/webpack.base.config.js",
     "build-second": "webpack --env.production --config ./build/webpack.base.config.js",
+    "build:dll": "webpack --config ./build/webpack.dll.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Rick Huang",
@@ -38,6 +39,7 @@
     "@babel/plugin-transform-runtime": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
+    "add-asset-html-webpack-plugin": "^3.1.3",
     "autoprefixer": "^9.6.1",
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.2",
