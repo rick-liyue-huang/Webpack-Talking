@@ -7,6 +7,7 @@
 const merge = require('webpack-merge');
 const baseConfig = require('./webpack.base.config');
 
+const workboxPlugin = require('workbox-webpack-plugin'); // for PWA
 
 const prodConfig = {
   
@@ -24,6 +25,12 @@ const prodConfig = {
 
   mode: "production",
   devtool: 'cheap-module-source-map', // for 'production' mode
+  plugins: [
+    new workboxPlugin.GenerateSW({
+      clientsClaim: true,
+      skipWaiting: true
+    }) // servicework
+  ]
 
 }
 

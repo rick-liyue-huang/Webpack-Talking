@@ -146,15 +146,30 @@
 
 // ------ cache --------
 
-import _ from 'lodash';
-import $ from 'jquery';
+// import _ from 'lodash';
+// import $ from 'jquery';
 
-import { ui } from './ui';
+// import { ui } from './ui';
 
-ui();
+// ui();
 
-const dom = $('<div>');
-dom.html(_.join(['rick', 'huang'], '---'));
-$('body').append(dom);
+// const dom = $('<div>');
+// dom.html(_.join(['rick', 'huang'], '---'));
+// $('body').append(dom);
 
-console.log(this === window);
+// console.log(this === window);
+
+// ------ PWA progressive web application -----
+
+console.log('hello rick');
+
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service-work registed');
+      }).catch(e => {
+        console.log('Service-work un-registed')
+      })
+  })
+}

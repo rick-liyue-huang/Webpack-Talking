@@ -270,4 +270,45 @@ library bundler
 
 `"main": "./dist/library.js",` in package.json
 
-ok
+
+Progressive Web Application
+PWA
+
+PWA configuration
+
+in package.json ` "new-start": "http-server dist",` to start one http-server and run dist directory.
+
+PWA: 如果访问一个网站，如果第一次访问成功了，如果服务器挂掉了，但是有一份缓存仍在本地，因此即使服务器不能用，也可以看到之前的页面。
+
+1. 
+`npm i workbox-webpack-plugin --save-dev`
+
+2. 
+in webpack.prod.config.js, 
+
+```
+plugin: [
+  new workboxPlugin.GenerateSW({
+    clientsClaim: true,
+    skipWaiting: true
+  }) // servicework
+]
+```
+
+3. in logic code 'index.js'
+
+```
+if('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js')
+      .then(registration => {
+        console.log('Service-work registed');
+      }).catch(e => {
+        console.log('Service-work un-registed')
+      })
+  })
+}
+```
+
+refer to 'https://github.com/GoogleChrome/workbox'
+
