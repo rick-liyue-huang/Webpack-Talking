@@ -270,3 +270,4 @@ library bundler
 
 `"main": "./dist/library.js",` in package.json
 
+ok
