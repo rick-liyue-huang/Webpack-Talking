@@ -1,2 +1,4 @@
 /webpack-basic/node_modules/
+/webpack-library/node_modules/
 /webpack-basic/dist/
+/webpack-library/dist/

@@ -264,3 +264,9 @@ Environment variable
 "dev-second": "webpack-dev-server --config ./build/webpack.base.config.js",
 "build-second": "webpack --env.production --config ./build/webpack.base.config.js",
 ```
+
+
+library bundler
+
+`"main": "./dist/library.js",` in package.json
+
