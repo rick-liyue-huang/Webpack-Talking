@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 class List extends Component {
   render() {
@@ -7,7 +7,7 @@ class List extends Component {
       <div>
         List Page
       </div>
-    )
+    );
   }
 }
 

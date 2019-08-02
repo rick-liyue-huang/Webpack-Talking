@@ -361,3 +361,45 @@ SINGLE PAGE APPLICATION
 
 add `historyApiFallback: true, // for spa` in devServer 
 refer to 'https://github.com/bripkens/connect-history-api-fallback'
+
+ESLINT
+
+here has two methods: 
+
+1. install it through command line
+
+`npm i --save-dev eslint`
+
+`npx eslint --init to config eslint`
+
+`npm i --save-dev babel-eslint`
+
+`npx eslint src` to check the err
+
+2. install extension eslint in vscode
+
+in vscode to install extension:  
+
+3. use eslint in webpack
+
+install `npm i --save-dev eslint-loader`
+
+add 
+```{
+  test: /\.js$/,
+  exclude: /node_modules/,
+  use: [
+    'babel-loader', 'eslint-loader',
+  ],
+}
+```
+in webpack.base.config.js
+
+add `overlay: true, // match with eslint-loader, to show one layer on browers` in webpack.dev.config.js
+
+refer to 'https://webpack.js.org/loaders/eslint-loader/'
+
+notice: eslint-loader first, and then babel-loader
+
+也可以不将eslint-loader 写入 webpack.config, 而是通过 git 'hook' eslint src 来检测是否需要将代码提交，前提是必须代码符合 eslint standard.
+

@@ -12,7 +12,7 @@
 
 // var img = new Image();
 // img.src = avatar;
-// // css modulation: let 
+// // css modulation: let
 // img.classList.add(style.avatar);
 // var root = document.getElementById('root');
 // root.append(img);
@@ -44,8 +44,6 @@
 //   document.body.appendChild(div);
 // }
 
-
-
 // import counter from './counter';
 // import number from './number';
 
@@ -56,7 +54,6 @@
 // // only hope the module no change by the other module change.
 // if(module.hot) {
 //   module.hot.accept('./number', () => {
-    
 //     document.body.removeChild(document.getElementById('number'));
 //     number();
 //   })
@@ -121,8 +118,6 @@
 //     document.body.appendChild(ele);
 //   });
 // });
-
-
 
 // ------- lazy load ----
 // document.addEventListener('click', () => {
@@ -208,16 +203,15 @@ import List from './list';
 import Home from './home';
 
 class App extends Component {
-
   render() {
     return (
       <BrowserRouter>
         <div>
-          <Route path='/' exact component={ Home } />
-          <Route path='/list' component={ List } />
+          <Route path="/" exact component={Home} />
+          <Route path="/list" component={List} />
         </div>
       </BrowserRouter>
-    )
+    );
   }
 }
 

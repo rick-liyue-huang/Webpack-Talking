@@ -9,12 +9,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
+const webpack = require('webpack'); // shimming
 const merge = require('webpack-merge');
 const devConfig = require('./webpack.dev.config');
 const prodConfig = require('./webpack.prod.config');
-
-const webpack = require('webpack'); // shimming
 
 /* module.exports */ const baseConfig = {
 
@@ -77,14 +75,20 @@ const webpack = require('webpack'); // shimming
       {
         test: /\.(eot|ttf|svg|woff|woff2)$/,
         use: {
-          loader: 'file-loader'
-        }
+          loader: 'file-loader',
+        },
       },
       // deal with es6 syntax, its a bridge
       { 
         test: /\.js$/, 
         exclude: /node_modules/, 
-        loader: 'babel-loader',
+        use: [
+          'babel-loader', 'eslint-loader', // set eslint-loader to check eslint standards
+        ],
+        options: {
+          fix: true, // automatically fixed some simple eslint problems
+        },
+        // loader: 'babel-loader',
         // use: [{
         //     loader: 'babel-loader'
         //   },{
@@ -95,7 +99,7 @@ const webpack = require('webpack'); // shimming
       //   test: require.resolve('./src/index.js'),
       //   use: 'imports-loader?this=>window'
       // } // ?
-    ]
+    ],
   },
 // HtmlWebpackPlugin will produce automatically one html file, and also plugin the bundled js file.
   plugins: [

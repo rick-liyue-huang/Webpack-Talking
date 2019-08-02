@@ -52,7 +52,9 @@ const devConfig = {
     },
     historyApiFallback: true, // for spa, match with BrowserRouter in react.js
     hot: true, // open Hot Module Replacement
-    // hotOnly: true // auto refresh page 
+    // hotOnly: true, // auto refresh page
+
+    overlay: true, // match with eslint-loader, to show one layer on browers
   },
   
   plugins: [
