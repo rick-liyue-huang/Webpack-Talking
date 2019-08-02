@@ -29,7 +29,7 @@ module.exports = {
     port: 8080,
     // cross-domain port, used in React.js
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/react/api': 'http://www.dell-lee.com'
     },
     hot: true, // open Hot Module Replacement
     hotOnly: true 

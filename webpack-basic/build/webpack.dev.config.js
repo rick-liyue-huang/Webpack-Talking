@@ -22,15 +22,35 @@ const devConfig = {
 
   // using webpack dev server in development environment
   devServer: {
+
+    // index: '', // specify to enable root proxying
     // watch the dist directory
     contentBase: './dist',
     // start webpack server, and open the browsers automatically.
     open: true,
     port: 8080,
     // cross-domain port, used in React.js
+    // A request to /react/api will now proxy the request to http://www.dell-lee.com/react/api.
     proxy: {
-      '/api': 'http://localhost:3000'
+      '/react/api': {
+        target: 'http://www.dell-lee.com',
+        secure: false, // for https
+        pathRewrite: {
+          'header.json': 'demo.json' // use demo.json to replace header.json
+        },
+        // bypass: function(req, res, proxyOptions) {
+        //   if (req.headers.accept.indexOf('html') !== -1) {
+        //     console.log('Skipping proxy for browser request.');
+        //     // return '/index.html';
+        //     return false;
+        //   }
+        // },
+        // context: ['/auth', '/api'],
+        // changeOrigin: true, // cancel the origin setting
+        
+      }
     },
+    historyApiFallback: true, // for spa, match with BrowserRouter in react.js
     hot: true, // open Hot Module Replacement
     // hotOnly: true // auto refresh page 
   },

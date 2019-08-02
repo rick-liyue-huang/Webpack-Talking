@@ -330,3 +330,34 @@ TYPESCRIPT
 
 can search 'http://microsoft.github.io/TypeSearch/' website to search whether it is suppported ts.
 
+
+
+More about webpack dev server
+
+add 
+
+```
+proxy: {
+'/react/api': {
+  target: 'http://www.dell-lee.com',
+  secure: false, // for https
+  pathRewrite: {
+    'header.json': 'demo.json' // use demo.json to replace header.json
+  },
+  // bypass: function(req, res, proxyOptions) {
+  //   if (req.headers.accept.indexOf('html') !== -1) {
+  //     console.log('Skipping proxy for browser request.');
+  //     // return '/index.html';
+  //     return false;
+  //   }
+  // },
+  // context: ['/auth', '/api'],
+  // changeOrigin: true, // cancel the origin setting
+  
+} 
+```
+
+SINGLE PAGE APPLICATION
+
+add `historyApiFallback: true, // for spa` in devServer 
+refer to 'https://github.com/bripkens/connect-history-api-fallback'

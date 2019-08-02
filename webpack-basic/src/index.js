@@ -161,15 +161,64 @@
 
 // ------ PWA progressive web application -----
 
-console.log('hello rick');
+// console.log('hello rick');
 
-if('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-      .then(registration => {
-        console.log('Service-work registed');
-      }).catch(e => {
-        console.log('Service-work un-registed')
-      })
-  })
+// if('serviceWorker' in navigator) {
+//   window.addEventListener('load', () => {
+//     navigator.serviceWorker.register('/service-worker.js')
+//       .then(registration => {
+//         console.log('Service-work registed');
+//       }).catch(e => {
+//         console.log('Service-work un-registed')
+//       })
+//   })
+// }
+
+
+//  ----- webpackDevServer proxy -------
+
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+// import axios from 'axios';
+
+// class App extends Component {
+
+//   render() {
+//     return (<div>Hello Rick</div>)
+//   }
+
+//   componentDidMount() {
+//     // here the server setting allow cross-domain a
+//     axios.get('/react/api/header.json')
+//       .then((res) => {
+//         console.log(res);
+//       })
+//   }
+// }
+
+// ReactDOM.render(<App />, document.getElementById('root'));
+
+// ------ webpackdevserver spa single page application ----
+
+
+import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
+import List from './list';
+import Home from './home';
+
+class App extends Component {
+
+  render() {
+    return (
+      <BrowserRouter>
+        <div>
+          <Route path='/' exact component={ Home } />
+          <Route path='/list' component={ List } />
+        </div>
+      </BrowserRouter>
+    )
+  }
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
