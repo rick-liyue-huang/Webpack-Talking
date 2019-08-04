@@ -1,7 +1,9 @@
 /webpack-basic/node_modules/
 /webpack-library/node_modules/
 /webpack-typescript/node_modules/
+/webpack-loader/node_modules/
 /webpack-basic/dist/
 /webpack-library/dist/
 /webpack-typescript/dist/
+/webpack-loader/dist/
 /webpack-basic/dll/

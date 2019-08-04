@@ -483,5 +483,7 @@ new HtmlWebpackPlugin({
 }),
 ```
 
+create self loader
+
 
 
